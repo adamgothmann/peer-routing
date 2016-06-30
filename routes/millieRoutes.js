@@ -10,8 +10,6 @@ router.use(function timeLog(req, res, next) {
   next();
 });
 
-//dummy-value get route. Dummy value meaning
-
 //'hard coded' Millie
 router.get('/millie', function(req, res) {
   var millie = new User({
@@ -51,23 +49,13 @@ router.put('/updateMillie', function(req, res) {
           res.sendStatus(500);
         }else{
           console.log('Update user = ', userResult._id);
-          res.sendStatus(200);
-          /**
-            Thought: What do you want your API to return.
-            Just a status code? The updated user object?
-            Or the userResult._id? res.send(userResult);
-          **/
+          res.sendStatus(userResult);
         }
       });
     }
   });
 }); //end update Millie route
 
-/**
-  Thought: How could you make this route delete any user?
-  It will need to take something to uniquely identify the user.
-  This should be passed in the URL. For ex: localhost:3000/delete/<id>
-**/
 // delete Millie route
 router.delete('/deleteMillie', function(req, res) {
   console.log('delete route');
@@ -82,7 +70,5 @@ router.delete('/deleteMillie', function(req, res) {
     }
   });
 });// end delete route
-
-
 
 module.exports = router;

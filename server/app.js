@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 //require model
 var User = require('../models/user');
 
-var generalRoutes = require('../routes/generalRoutes');
+var userRoutes = require('../routes/userRoutes');
 var millieRoutes = require('../routes/millieRoutes');
 
 // get the express app
@@ -17,8 +17,12 @@ mongoose.connect('mongodb://localhost:27017/userDb');
 //parse json
 app.use(bodyParser.json());
 
-app.use('/general', generalRoutes);
+app.use('/user', userRoutes);
 app.use('/millie', millieRoutes);
+
+app.get('/', function(req, res) {
+  res.sendStatus(200);
+});
 
 // server listen
 var server = app.listen(3000, function() {
